@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/rootView"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.notes.notes.settings.fragment.SettingsFragment">
+
+  <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appBar"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@color/teal_700"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+      app:title="@string/settings_fragment_label" />
+  </com.google.android.material.appbar.AppBarLayout>
+
+  <androidx.appcompat.widget.SwitchCompat
+    android:id="@+id/switch_theme"
+    style="@style/base_style_items"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="@string/theme_white"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/appBar"/>
+
+  <androidx.appcompat.widget.SwitchCompat
+    android:id="@+id/switch_language"
+    style="@style/base_style_items"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:text="@string/language"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/switch_theme"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

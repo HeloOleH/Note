@@ -1,0 +1,29 @@
+<resources>
+  <string name="app_name">Notes</string>
+  <string name="action_settings">Settings</string>
+
+
+
+  <!-- List screen -->
+  <string name="list_fragment_label">List Notes</string>
+
+
+
+  <!-- Edits screen -->
+  <string name="edits_fragment_label">Edits Notes</string>
+
+
+
+  <!-- Settings screen -->
+  <string name="settings_fragment_label">Settings</string>
+  <string name="theme_white">White theme</string>
+  <string name="theme_dark">Dark theme</string>
+  <string name="language">language English or Ukraine</string>
+  <string name="engish">English</string>
+  <string name="ukraine">Ukraine</string>
+  <string name="title">title</string>
+  <string name="body">body</string>
+  <string name="action_create">create</string>
+  <string name="action_add">add</string>
+
+</resources>

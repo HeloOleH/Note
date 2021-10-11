@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/ListFragment">
+
+  <fragment
+    android:id="@+id/ListFragment"
+    android:name="com.notes.notes.lists.fragment.ListFragment"
+    android:label="@string/list_fragment_label"
+    tools:layout="@layout/list_fragment">
+    <action
+      android:id="@+id/action_ListFragment_to_EditsFragment"
+      app:destination="@id/EditsFragment" />
+    <action
+      android:id="@+id/action_ListFragment_to_SettingsFragment"
+      app:destination="@id/SettingsFragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/EditsFragment"
+    android:name="com.notes.notes.edits.fragment.EditsFragment"
+    android:label="@string/edits_fragment_label"
+    tools:layout="@layout/fragment_edits">
+    <action
+      android:id="@+id/action_EditsFragment_to_ListFragment"
+      app:destination="@id/ListFragment" />
+    <action
+      android:id="@+id/action_EditsFragment_to_SettingsFragment"
+      app:destination="@id/SettingsFragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/SettingsFragment"
+    android:name="com.notes.notes.settings.fragment.SettingsFragment"
+    android:label="@string/settings_fragment_label"
+    tools:layout="@layout/setting_fragment">
+    <action
+      android:id="@+id/action_settingsFragment_to_ListFragment"
+      app:destination="@id/ListFragment" />
+    <action
+      android:id="@+id/action_settingsFragment_to_EditsFragment"
+      app:destination="@id/EditsFragment" />
+  </fragment>
+
+</navigation>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/rootView"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".lists.fragment.ListFragment">
+
+  <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/teal_700">
+
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      app:menu="@menu/menu_list"
+      app:title="@string/list_fragment_label"
+      app:layout_scrollFlags="scroll|enterAlways" />
+  </com.google.android.material.appbar.AppBarLayout>
+
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:padding="4dp"
+    tools:itemCount="3"
+    tools:listitem="@layout/list_viewholder_item" />
+
+  <FrameLayout
+    android:id="@+id/loadingView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="?android:progressBarStyleLarge"
+    android:visibility="gone">
+
+    <ProgressBar
+      style="?android:progressBarStyleLarge"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"/>
+
+  </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

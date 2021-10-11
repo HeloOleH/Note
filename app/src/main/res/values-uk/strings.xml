@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Нотатки</string>
+  <string name="action_settings">Екран налаштувань</string>
+
+
+
+  <!-- List screen -->
+  <string name="list_fragment_label">Список нотаток</string>
+
+
+
+  <!-- Edits screen -->
+  <string name="edits_fragment_label">Редагування нотатки</string>
+
+
+
+  <!-- Settings screen -->
+  <string name="settings_fragment_label">Налаштування</string>
+  <string name="theme_white">Світла тема</string>
+  <string name="theme_dark">Темна тема</string>
+  <string name="language">Мова</string>
+  <string name="engish">Англійська</string>
+  <string name="ukraine">Українська</string>
+  <string name="title">title</string>
+  <string name="body">body</string>
+  <string name="action_create">create</string>
+  <string name="action_add">add</string>
+
+</resources>
