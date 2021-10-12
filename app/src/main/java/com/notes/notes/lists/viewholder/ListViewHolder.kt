@@ -13,8 +13,8 @@ class ListViewHolder(
 ) : RecyclerView.ViewHolder(itemView),
     View.OnClickListener {
 
-    private val textViewBody: TextView = itemView.findViewById(R.id.textview_content_title)
-    private val textViewTitle: TextView = itemView.findViewById(R.id.textview_content_body)
+    private val textViewTitle: TextView = itemView.findViewById(R.id.textview_content_title)
+    private val textViewBody: TextView = itemView.findViewById(R.id.textview_content_body)
 
     fun bindTitle(text: String?) {
         textViewTitle.text = text
@@ -29,7 +29,7 @@ class ListViewHolder(
     }
 
     override fun onClick(v: View) {
-        clickListener.onListClick(v.id)
+        clickListener.onListClick(adapterPosition + 1)
     }
 
     companion object {

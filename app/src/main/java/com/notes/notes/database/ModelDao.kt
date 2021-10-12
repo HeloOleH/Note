@@ -13,13 +13,13 @@ interface ModelDao {
     fun getAll() : MutableList<ModelListItems>
 
     @Query("SELECT * FROM ModelListItems WHERE id = :id")
-    fun getById(id: Long) : ModelListItems
+    fun getById(id: Long) : Flow<ModelListItems>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(modelListItems: ModelListItems)
 
     @Update
-    fun update(modelListItems: ModelListItems)
+    suspend fun update(modelListItems: ModelListItems)
 
     @Delete
     fun delete(modelListItems: ModelListItems)

@@ -16,6 +16,9 @@ import com.notes.notes.lists.viewholder.RecyclerOnClickListener
 import com.notes.notes.lists.viewmodel.ListViewModel
 import com.notes.notes.lists.viewmodel.ListViewModelFactory
 import com.notes.notes.lists.viewmodel.UiEvent
+import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_IS_ADD_OR_EDIT_MODE
+import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_LIST_POSITION
+import com.notes.notes.utils.BundleKeys.Companion.TAG
 
 class ListFragment : Fragment(), RecyclerOnClickListener {
 
@@ -54,7 +57,11 @@ class ListFragment : Fragment(), RecyclerOnClickListener {
             }
             menu.findItem(R.id.action_add).apply {
                 setOnMenuItemClickListener {
-                    findNavController().navigate(R.id.action_ListFragment_to_EditsFragment)
+                    val bundle = Bundle()
+                    bundle.putInt(BUNDLE_LIST_POSITION, customAdapter.itemCount + 1)
+                    bundle.putBoolean(BUNDLE_IS_ADD_OR_EDIT_MODE, true)
+
+                    findNavController().navigate(R.id.action_ListFragment_to_EditsFragment, bundle)
                     true
                 }
             }
@@ -66,17 +73,18 @@ class ListFragment : Fragment(), RecyclerOnClickListener {
     }
 
     override fun onListClick(position: Int) {
-        Log.d("ListFragment", "click recyclerview: $position")
-        findNavController().navigate(R.id.action_ListFragment_to_EditsFragment)
+        val bundle = Bundle()
+        bundle.putInt(BUNDLE_LIST_POSITION, position)
+        bundle.putBoolean(BUNDLE_IS_ADD_OR_EDIT_MODE, false)
 
+        findNavController().navigate(R.id.action_ListFragment_to_EditsFragment, bundle)
         viewModelList.processUi(UiEvent.ListSelected(position))
     }
 
     private fun observeViewModel() = with(viewModelList) {
         allLists.observe(viewLifecycleOwner) { lists ->
-
             lists?.let {
-                Log.d("ListFragment note", "${it.firstOrNull()?.body} ${it.firstOrNull()?.title} ")
+               // Log.d(TAG, "FragmentList observe all list: ${it.firstOrNull()?.body} ${it.firstOrNull()?.title} ")
                 customAdapter.submitList(it)
             }
         }

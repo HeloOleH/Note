@@ -14,6 +14,10 @@ import com.notes.notes.database.ModelListItems
 import com.notes.notes.databinding.FragmentEditsBinding
 import com.notes.notes.edits.viewmodel.ListViewModelFactory
 import com.notes.notes.edits.viewmodel.ViewModelEdits
+import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_IS_ADD_OR_EDIT_MODE
+import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_LIST_POSITION
+import com.notes.notes.utils.BundleKeys.Companion.EMPTY
+import com.notes.notes.utils.BundleKeys.Companion.TAG
 
 class EditsFragment : Fragment() {
 
@@ -51,18 +55,21 @@ class EditsFragment : Fragment() {
                     true
                 }
             }
-            var count: Long = 1
+
             menu.findItem(R.id.action_create).apply {
                 setOnMenuItemClickListener {
-                    count++
                     if (binding.edittextTitle.text.isNotEmpty()) {
                         val m = ModelListItems(
-                            count,
+                            getPositionFromArguments(),
                             binding.edittextTitle.text.toString(),
                             binding.edittextBody.text.toString()
                         )
-                        viewModelEdits.insert(m)
 
+                        if (getIsAddOrEditFromArguments()) {
+                            viewModelEdits.insert(m) // for add new list item
+                        } else {
+                            viewModelEdits.update(m) // for Edits old list item
+                        }
                         findNavController().navigate(R.id.action_EditsFragment_to_ListFragment)
                     }
                     true
@@ -72,15 +79,26 @@ class EditsFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModelEdits.allLists.observe(viewLifecycleOwner) { lists ->
-            lists.let {
-                Log.d("note", "${it.forEach { act -> print("$act") }} ${it.firstOrNull()?.title} ")
-                it.forEach { act ->
-                    Log.d("note", "$it  $act" )
+        viewModelEdits.getModelById(getPositionFromArguments())
+            .observe(viewLifecycleOwner) { listItem ->
+                listItem.let {
+                    if (getIsAddOrEditFromArguments()) {
+                        binding.edittextTitle.setText(EMPTY)
+                        binding.edittextBody.setText(EMPTY)
+                    } else {
+                        binding.edittextTitle.setText(it.title)
+                        binding.edittextBody.setText(it.body)
+                    }
                 }
             }
-        }
     }
+
+    private fun getPositionFromArguments() =
+        arguments?.getInt(BUNDLE_LIST_POSITION, 1)?.toLong() ?: 1
+
+    private fun getIsAddOrEditFromArguments() =
+        arguments?.getBoolean(BUNDLE_IS_ADD_OR_EDIT_MODE, false) ?: false
+
 
     override fun onDestroyView() {
         super.onDestroyView()

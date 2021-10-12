@@ -12,11 +12,19 @@ class ViewModelEdits(
     val allLists: LiveData<List<ModelListItems>> =
         repository.allModels.asLiveData()
 
+    fun getModelById(id: Long): LiveData<ModelListItems> {
+        return repository.getById(id).asLiveData()
+    }
+
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
     fun insert(modelListItems: ModelListItems) = viewModelScope.launch {
         repository.insert(modelListItems)
+    }
+
+    fun update(modelListItems: ModelListItems) = viewModelScope.launch {
+        repository.update(modelListItems)
     }
 }
 
