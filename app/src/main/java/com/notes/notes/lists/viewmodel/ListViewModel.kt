@@ -10,6 +10,8 @@ class ListViewModel(
     private val repository: ListRepository
 ) : ViewModel() {
 
+    val state: MutableLiveData<UiEvent> = MutableLiveData<UiEvent>()
+
     val allLists: LiveData<List<ModelListItems>> =
         repository.allModels.asLiveData()
 

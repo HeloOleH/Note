@@ -1,7 +1,6 @@
 package com.notes.notes.edits.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,9 @@ import com.notes.notes.database.ModelListItems
 import com.notes.notes.databinding.FragmentEditsBinding
 import com.notes.notes.edits.viewmodel.ListViewModelFactory
 import com.notes.notes.edits.viewmodel.ViewModelEdits
-import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_IS_ADD_OR_EDIT_MODE
-import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_LIST_POSITION
-import com.notes.notes.utils.BundleKeys.Companion.EMPTY
-import com.notes.notes.utils.BundleKeys.Companion.TAG
+import com.notes.notes.utils.BUNDLE_IS_ADD_OR_EDIT_MODE
+import com.notes.notes.utils.BUNDLE_LIST_POSITION
+import com.notes.notes.utils.EMPTY
 
 class EditsFragment : Fragment() {
 

@@ -30,6 +30,7 @@ ext {
     lifecycleVersion = '2.3.1'
     materialVersion = '1.4.0'
     roomVersion = '2.3.0'
+    dataStoreVersion = '1.0.0'
 
     koinVersion = '2.2.2'
 

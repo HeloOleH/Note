@@ -19,11 +19,12 @@
   <string name="theme_white">White theme</string>
   <string name="theme_dark">Dark theme</string>
   <string name="language">language English or Ukraine</string>
-  <string name="engish">English</string>
+  <string name="english">English</string>
   <string name="ukraine">Ukraine</string>
   <string name="title">title</string>
   <string name="body">body</string>
   <string name="action_create">create</string>
   <string name="action_add">add</string>
+  <string name="all_settings_saved">All settings saved</string>
 
 </resources>

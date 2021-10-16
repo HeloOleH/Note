@@ -1,19 +1,25 @@
 package com.notes.notes.settings.data
 
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import com.notes.notes.settings.presenter.Repository
+import com.notes.notes.utils.setLocale
 
-class DataSettings : Repository {
+class DataSettings(val context: Context) : Repository {
 
     override fun saveTheme(isChecked: Boolean) {
-        println("save theme ${isChecked}")
+        if (isChecked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
     }
 
     override fun saveLanguage(isChecked: Boolean) {
-        println("save language ${isChecked}")
         if (isChecked) {
-
+            setLocale(context, "en")
         } else {
-
+            setLocale(context, "uk")
         }
     }
 }

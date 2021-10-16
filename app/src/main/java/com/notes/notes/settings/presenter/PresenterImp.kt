@@ -3,10 +3,9 @@ package com.notes.notes.settings.presenter
 import android.content.Context
 import com.notes.notes.settings.data.DataSettings
 
-class PresenterImp(mView: View, context: Context?) : Presenter {
+class PresenterImp(mView: View, context: Context) : Presenter {
     private var mView: View = mView
-    private val mRepository: Repository = DataSettings()
-    private val message: String? = null
+    private val mRepository: Repository = DataSettings(context)
 
     override fun switchTheme(isChecked: Boolean) {
         mRepository.saveTheme(isChecked)

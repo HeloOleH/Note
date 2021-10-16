@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,9 +17,9 @@ import com.notes.notes.lists.viewholder.RecyclerOnClickListener
 import com.notes.notes.lists.viewmodel.ListViewModel
 import com.notes.notes.lists.viewmodel.ListViewModelFactory
 import com.notes.notes.lists.viewmodel.UiEvent
-import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_IS_ADD_OR_EDIT_MODE
-import com.notes.notes.utils.BundleKeys.Companion.BUNDLE_LIST_POSITION
-import com.notes.notes.utils.BundleKeys.Companion.TAG
+import com.notes.notes.utils.BUNDLE_IS_ADD_OR_EDIT_MODE
+import com.notes.notes.utils.BUNDLE_LIST_POSITION
+import com.notes.notes.utils.TAG
 
 class ListFragment : Fragment(), RecyclerOnClickListener {
 
@@ -86,6 +87,12 @@ class ListFragment : Fragment(), RecyclerOnClickListener {
             lists?.let {
                // Log.d(TAG, "FragmentList observe all list: ${it.firstOrNull()?.body} ${it.firstOrNull()?.title} ")
                 customAdapter.submitList(it)
+            }
+        }
+        state.observe(viewLifecycleOwner) {
+            when (it) {
+                UiEvent.Loading -> binding.loadingView.isVisible = true
+                UiEvent.Success -> binding.loadingView.isVisible = false
             }
         }
     }
