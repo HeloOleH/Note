@@ -1,31 +1,25 @@
 package com.notes.notes.lists.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.notes.notes.App
 import com.notes.notes.R
 import com.notes.notes.databinding.ListFragmentBinding
 import com.notes.notes.lists.adapters.RecyclerViewAdapter
 import com.notes.notes.lists.viewholder.RecyclerOnClickListener
 import com.notes.notes.lists.viewmodel.ListViewModel
-import com.notes.notes.lists.viewmodel.ListViewModelFactory
 import com.notes.notes.lists.viewmodel.UiEvent
 import com.notes.notes.utils.BUNDLE_IS_ADD_OR_EDIT_MODE
 import com.notes.notes.utils.BUNDLE_LIST_POSITION
-import com.notes.notes.utils.TAG
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ListFragment : Fragment(), RecyclerOnClickListener {
 
-    private val viewModelList: ListViewModel by viewModels {
-        ListViewModelFactory((activity?.application as App).repository)
-    }
+    private val viewModelList by sharedViewModel<ListViewModel>()
 
     private var _binding: ListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -85,7 +79,6 @@ class ListFragment : Fragment(), RecyclerOnClickListener {
     private fun observeViewModel() = with(viewModelList) {
         allLists.observe(viewLifecycleOwner) { lists ->
             lists?.let {
-               // Log.d(TAG, "FragmentList observe all list: ${it.firstOrNull()?.body} ${it.firstOrNull()?.title} ")
                 customAdapter.submitList(it)
             }
         }

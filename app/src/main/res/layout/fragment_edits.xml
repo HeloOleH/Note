@@ -9,9 +9,9 @@
 
   <com.google.android.material.appbar.AppBarLayout
     android:id="@+id/appBar"
+    style="@style/AppBarLayout"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:background="@color/color_action_bar"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -27,24 +27,20 @@
 
   <EditText
     android:id="@+id/edittext_title"
+    style="@style/Custom_EditText"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_margin="@dimen/base_margin_x1"
-    android:gravity="top"
     android:hint="@string/title"
-    android:textColor="@color/purple_500"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/appBar" />
 
   <EditText
     android:id="@+id/edittext_body"
+    style="@style/Custom_EditText"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_margin="@dimen/base_margin_x1"
-    android:gravity="top"
     android:hint="@string/body"
-    android:textColor="@color/purple_500"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

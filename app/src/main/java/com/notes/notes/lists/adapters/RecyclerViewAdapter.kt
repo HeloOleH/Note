@@ -7,7 +7,7 @@ import com.notes.notes.database.ModelListItems
 import com.notes.notes.lists.viewholder.ListViewHolder
 import com.notes.notes.lists.viewholder.RecyclerOnClickListener
 
-class RecyclerViewAdapter(val clickListener: RecyclerOnClickListener) :
+class RecyclerViewAdapter(private val clickListener: RecyclerOnClickListener) :
     ListAdapter<ModelListItems, ListViewHolder>(WORDS_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

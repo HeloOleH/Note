@@ -5,23 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.notes.notes.App
 import com.notes.notes.R
 import com.notes.notes.database.ModelListItems
 import com.notes.notes.databinding.FragmentEditsBinding
-import com.notes.notes.edits.viewmodel.ListViewModelFactory
 import com.notes.notes.edits.viewmodel.ViewModelEdits
 import com.notes.notes.utils.BUNDLE_IS_ADD_OR_EDIT_MODE
 import com.notes.notes.utils.BUNDLE_LIST_POSITION
 import com.notes.notes.utils.EMPTY
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class EditsFragment : Fragment() {
 
-    private val viewModelEdits: ViewModelEdits by viewModels {
-        ListViewModelFactory((activity?.application as App).repository)
-    }
+    private val viewModelEdits by sharedViewModel<ViewModelEdits>()
 
     private var _binding: FragmentEditsBinding? = null
     private val binding get() = _binding!!

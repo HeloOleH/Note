@@ -1,38 +1,43 @@
 package com.notes.notes
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatDelegate
-import com.notes.notes.database.AppDatabase
+import androidx.fragment.app.ListFragment
 import com.notes.notes.database.ListRepository
-import com.notes.notes.utils.PREFERENCES_KEY_IS_CHECKED_LANGUAGE
-import com.notes.notes.utils.PREFERENCES_KEY_IS_CHECKED_THEME
-import com.notes.notes.utils.readPreferences
-import com.notes.notes.utils.setLocale
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import com.notes.notes.database.di.moduleDatabase
+import com.notes.notes.edits.fragment.EditsFragment
+import com.notes.notes.edits.viewmodel.ViewModelEdits
+import com.notes.notes.lists.viewmodel.ListViewModel
+import com.notes.notes.settings.fragment.SettingsFragment
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
 class App : Application() {
-
-    private val applicationScope = CoroutineScope(SupervisorJob())
-    val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { ListRepository(database.getModelDao()) }
 
     override fun onCreate() {
         super.onCreate()
 
-        val isChecked = readPreferences(this, PREFERENCES_KEY_IS_CHECKED_THEME)
-        val isCheckedLanguage = readPreferences(this, PREFERENCES_KEY_IS_CHECKED_LANGUAGE)
-
-        if (isChecked) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-
-        if (isCheckedLanguage) {
-            setLocale(this, "en")
-        } else {
-            setLocale(this, "uk")
+        startKoin {
+            androidContext(this@App)
+            modules(getModules())
         }
     }
+
+    private val appModule = module {
+
+        viewModel { ListViewModel(get()) }
+        single { ListRepository(get()) }
+
+        viewModel { ViewModelEdits(get()) }
+
+        single { ListFragment() }
+        single { EditsFragment() }
+        single { SettingsFragment() }
+    }
+
+    private fun getModules() = listOf(
+        appModule,
+        moduleDatabase
+    )
 }

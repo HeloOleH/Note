@@ -31,4 +31,26 @@
     <item name="android:layout_marginEnd">8dp</item>
     <item name="android:layout_marginTop">8dp</item>
   </style>
+
+  <style name="AppBarLayout">
+    <item name="android:background">@color/color_action_bar</item>
+  </style>
+
+  <style name="List_ViewHolder_Item">
+    <item name="android:textColor">@color/black</item>
+    <item name="android:typeface">serif</item>
+  </style>
+
+  <style name="List_ViewHolder_Item_Container">
+    <item name="android:layout_margin">@dimen/base_margin_x1</item>
+    <item name="android:background">@color/color_view_holder_background</item>
+    <item name="android:padding">8dp</item>
+  </style>
+
+  <style name="Custom_EditText">
+    <item name="android:gravity">top</item>
+    <item name="android:layout_margin">@dimen/base_margin_x1</item>
+    <item name="android:textColor">@color/purple_500</item>
+  </style>
+
 </resources>

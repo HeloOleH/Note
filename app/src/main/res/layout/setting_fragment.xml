@@ -9,9 +9,9 @@
 
   <com.google.android.material.appbar.AppBarLayout
     android:id="@+id/appBar"
+    style="@style/AppBarLayout"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:background="@color/color_action_bar"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -31,9 +31,9 @@
     android:layout_height="48dp"
     android:layout_margin="@dimen/base_margin_x1"
     android:text="@string/theme_white"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/appBar"/>
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/appBar" />
 
   <androidx.appcompat.widget.SwitchCompat
     android:id="@+id/switch_language"
@@ -42,9 +42,9 @@
     android:layout_height="48dp"
     android:layout_margin="@dimen/base_margin_x1"
     android:text="@string/language"
-    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/switch_theme"/>
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/switch_theme" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
